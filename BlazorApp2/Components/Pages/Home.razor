@@ -12,6 +12,11 @@
     private void Callback()
     {
         var tests = new List<Test>();
+        tests.Add(new Test()
+        {
+            Name = "张三",
+            Address = "北京"
+        });
         DialogService.ShowModal<TableTest>(new ResultDialogOption()
         {
             Title = "测试问题",
