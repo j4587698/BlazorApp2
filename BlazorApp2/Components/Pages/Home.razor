@@ -1,0 +1,24 @@
+﻿@page "/"
+@using BlazorApp2.Components.Components
+@inject DialogService DialogService
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<Button OnClick="Callback">点我打开问题Table</Button>
+
+@code {
+    private void Callback()
+    {
+        var tests = new List<Test>();
+        DialogService.ShowModal<TableTest>(new ResultDialogOption()
+        {
+            Title = "测试问题",
+            ComponentParameters = new Dictionary<string, object>()
+            {
+                [nameof(TableTest.Tests)] = tests
+            }
+        });
+    }
+}
