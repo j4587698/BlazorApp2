@@ -1,6 +1,6 @@
 ﻿@implements IResultDialog
 
-<Table TItem="Test" IsTracking="true" @bind-Items="Tests" AutoGenerateColumns="true" ShowToolbar="true" ShowExtendButtons="true">
+<Table TItem="Test" IsTracking="true" @bind-Items="_test" AutoGenerateColumns="true" ShowToolbar="true" ShowExtendButtons="true">
     
 </Table>
 
@@ -8,15 +8,17 @@
     [Parameter]
     public IEnumerable<Test>? Tests { get; set; }
 
-    protected override void OnInitialized()
+    private IEnumerable<Test>? _test;
+
+    protected override void OnParametersSet()
     {
-        base.OnInitialized();
-        //Tests = new List<Test>();
+        base.OnParametersSet();
+
+        _test ??= Tests;
     }
 
     public Task OnClose(DialogResult result)
     {
         return Task.CompletedTask;
     }
-
 }
